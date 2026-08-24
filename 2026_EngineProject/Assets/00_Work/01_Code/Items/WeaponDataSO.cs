@@ -1,5 +1,6 @@
 using UnityEngine;
 using Work.Code.Inventories;
+using Work.Code.PlayerStats;
 
 namespace Work.Code.Items
 {
@@ -12,10 +13,18 @@ namespace Work.Code.Items
     public class WeaponDataSO : ItemDataSO
     {
         [Header("Weapon Data")]
-        public int damege;
+        public int damage;
+        public int maxDurability;
         public int durability;
+        
         public WeaponType type;
+        public WeaponProficiencyLevelSO weaponProficiencyData;
 
-
+        private void OnValidate()
+        {
+            durability = maxDurability;
+        }
     }
+
+
 }

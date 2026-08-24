@@ -15,9 +15,10 @@ MonoBehaviour:
   itemId: 1
   itemName: "\uB514\uBC84\uADF8 \uAC80"
   icon: {fileID: 21300000, guid: 68c7f88b4b2e04b47ae31471b622f5da, type: 3}
-  description: "\uB09C \uC2DC\uAC04\uC774 \uC5C6\uB2E8 \uB9D0\uC774\uB2E4..."
+  description: "\uC9F1\uC9F1\uC318 \uAC80"
   size: {x: 1, y: 3}
   canRotate: 1
-  damege: 999
+  damage: 999
+  maxDurability: 100
   durability: 100
   type: 1

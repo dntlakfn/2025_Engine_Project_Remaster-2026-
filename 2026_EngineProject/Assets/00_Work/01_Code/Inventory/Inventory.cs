@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Work.Code.Events;
 using Work.Code.Items;
-using static Work.Code.Items.DragableItem;
+using static Work.Code.Items.DragableItemUI;
 
 namespace Work.Code.Inventories
 {
@@ -48,7 +48,7 @@ namespace Work.Code.Inventories
             canvasGroup.blocksRaycasts = !canvasGroup.blocksRaycasts;
         }
 
-        public bool CanEquipItem(DragableItem item, Vector2 position, out Vector2Int currentCanEquipPoint)
+        public bool CanEquipItem(DragableItemUI item, Vector2 position, out Vector2Int currentCanEquipPoint)
         {
             InventoryItemInstance itemInst = item.GetItemInstance();
             currentCanEquipPoint = new Vector2Int(-1, -1);
@@ -81,7 +81,7 @@ namespace Work.Code.Inventories
             return true;
         }
 
-        public void EquipItem(DragableItem item, Vector2Int position)
+        public void EquipItem(DragableItemUI item, Vector2Int position)
         {
 
             InventoryItemInstance itemInst = item.GetItemInstance();
@@ -104,9 +104,24 @@ namespace Work.Code.Inventories
 
         }
 
+        public void UnequipItem(DragableItemUI item)
+        {
+            InventoryItemInstance itemInst = item.GetItemInstance();
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (_inventoryArray[i, j]?.uniqueId == itemInst.uniqueId)
+                    {
+                        _inventoryArray[i, j] = null;
+                    }
+                }
+            }
+        }
+
         public void OnDrop(PointerEventData eventData)
         {
-            DragableItem item = eventData.pointerDrag?.GetComponent<DragableItem>();
+            DragableItemUI item = eventData.pointerDrag?.GetComponent<DragableItemUI>();
             Debug.Assert(item != null, "드롭을 했는데 왜 집고있는게 없냐");
 
             for (int i = 0; i < _blockArray.Length; i++)
